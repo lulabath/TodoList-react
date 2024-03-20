@@ -19,11 +19,17 @@ function App() {
     localStorage.setItem('toDo', JSON.stringify([...allTodo, newTodo]));
   };
 
+  const handleDeleteToDo = (idToDo) =>{
+    const updatedTodoList = allTodo.filter((toDo) => toDo.id !== idToDo);
+    setAllTodo(updatedTodoList);
+    localStorage.setItem("toDo", JSON.stringify(updatedTodoList));
+  };
+
   return (
     <>
       <Header />
-      <ContainerForm onAddTask={handleAddTask} allTodo={allTodo} />
-      <ContainerToDo allTodo={allTodo} />
+      <ContainerForm onAddTask={handleAddTask}/>
+      <ContainerToDo allTodo={allTodo} onDeleteToDo ={handleDeleteToDo} />
       <Footer />
     </>
   )
