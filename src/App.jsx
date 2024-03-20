@@ -1,18 +1,15 @@
-//import { useState } from 'react'
 import Header from "./components/Header"
 import ContainerForm from "./components/ContainerForm"
 import ContainerToDo from "./components/ContainerToDo";
 import { useState } from "react";
 
 function App() {
+  //ahora las tareas que agrego no se guardan en el ls pero si me las muestra como li
   const [allTodo, setAllTodo] = useState([]);
-
-  const handleAddTask = (toDo) =>{
-    console.log('Se agregó la tarea:', toDo);
+  const handleAddTask = (newTodo) => {
+    console.log('Se agregó la tarea:', newTodo);
     setAllTodo([...allTodo, newTodo]);
   };
-
-  console.log('tareas', {allTodo});
 
   return (
     <>
@@ -22,5 +19,4 @@ function App() {
     </>
   )
 }
-
 export default App
