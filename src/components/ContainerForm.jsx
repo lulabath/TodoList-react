@@ -1,40 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function ContainerForm({ onAddTask }) {
   const [toDo, setToDo] = useState('');
   const [filter, setFilter] = useState('all');
+  //const [allTodo, setAllToDo] = useState([]);
+  
+  // useEffect(() => {
+  //   const toDoSaved = localStorage.getItem('toDo');
+  //   if(toDoSaved){
+  //     setAllToDo(JSON.parse(toDoSaved));
+  //   }
+  // }, []);
 
-  const [allTodo, setAllToDo] = useState(() => {
-    const toDoSaved = localStorage.getItem('toDo');
-    console.log("tareas cargadas desde el ls:", toDoSaved);
-    return toDoSaved ? JSON.parse(toDoSaved) : [];
-  });//en este estado  irian TODAS las tareas.
-
-  useEffect(() => {
-    const toDoSaved = localStorage.getItem('toDo');
-    if (toDoSaved) {
-      setAllToDo(JSON.parse(toDoSaved));//parseo  el JSON del LS.
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('toDo', JSON.stringify(allTodo));
-    console.log(allTodo); // Guardar todas las tareas como JSON
-  }, [allTodo]);
+  // useEffect(() => {
+  //   localStorage.setItem('toDo', JSON.stringify(allTodo)); // Guardar todas las tareas como JSON
+  // }, [allTodo]);
 
   const handleChange = (event) => {
     const todoText = event.target.value;
-    if (todoText.length <= 40) {
+    if(todoText.length <= 40){
       setToDo(todoText);
     }
   };
 
   const handleAddTask = () => {
     const id = crypto.randomUUID();
-    const newTodo = { toDo: toDo, id };
+    const newTodo = {toDo: toDo, id: id};
     console.log('nueva tarea agregada:', newTodo);
-    setAllToDo([...allTodo, newTodo])
-    onAddTask(newTodo); //aca paso completa la nueva tarea, si le paso todo solo es el texto.
+    //setAllToDo([...allTodo, newTodo]);
+    onAddTask(newTodo);//aca paso completa la nueva tarea, si le paso todo solo es el
     setToDo('');
   }
 
