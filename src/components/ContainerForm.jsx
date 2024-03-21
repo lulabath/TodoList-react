@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function ContainerForm({ onAddTask }) {
+export default function ContainerForm({ onAddTask, onFilterChange }) {
   const [toDo, setToDo] = useState('');
   const [filter, setFilter] = useState('all');
   //const [allTodo, setAllToDo] = useState([]);
@@ -17,23 +17,25 @@ export default function ContainerForm({ onAddTask }) {
   // }, [allTodo]);
 
   const handleChange = (event) => {
-    const todoText = event.target.value;
-    if(todoText.length <= 40){
-      setToDo(todoText);
+    const toDoText = event.target.value;
+    if(toDoText.length <= 40){
+      setToDo(toDoText);
     }
   };
 
   const handleAddTask = () => {
     const id = crypto.randomUUID();
-    const newTodo = {toDo: toDo, id: id};
-    console.log('nueva tarea agregada:', newTodo);
+    const newToDo = {toDo: toDo, id: id};
+    console.log('nueva tarea agregada:', newToDo);
     //setAllToDo([...allTodo, newTodo]);
-    onAddTask(newTodo);//aca paso completa la nueva tarea, si le paso todo solo es el
+    onAddTask(newToDo);//aca paso completa la nueva tarea, si le paso todo solo es el
     setToDo('');
   }
 
   const handleFilterChange = (event) => {
-    setFilter(event.target.value);
+    const selectedFilter = event.target.value;
+    setFilter(selectedFilter);
+    onFilterChange(selectedFilter);
   };
 
   return (
