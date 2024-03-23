@@ -1,34 +1,21 @@
 import React, { useState } from 'react';
+import { Grid, TextField, MenuItem, Button } from '@mui/material';
 
 export default function ContainerForm({ onAddTask, onFilterChange }) {
   const [toDo, setToDo] = useState('');
   const [filter, setFilter] = useState('all');
-  //const [allTodo, setAllToDo] = useState([]);
-  
-  // useEffect(() => {
-  //   const toDoSaved = localStorage.getItem('toDo');
-  //   if(toDoSaved){
-  //     setAllToDo(JSON.parse(toDoSaved));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem('toDo', JSON.stringify(allTodo)); // Guardar todas las tareas como JSON
-  // }, [allTodo]);
 
   const handleChange = (event) => {
     const toDoText = event.target.value;
-    if(toDoText.length <= 40){
+    if (toDoText.length <= 40) {
       setToDo(toDoText);
     }
   };
 
   const handleAddTask = () => {
     const id = crypto.randomUUID();
-    const newToDo = {toDo: toDo, id: id};
-    console.log('nueva tarea agregada:', newToDo);
-    //setAllToDo([...allTodo, newTodo]);
-    onAddTask(newToDo);//aca paso completa la nueva tarea, si le paso todo solo es el
+    const newToDo = { toDo: toDo, id: id };
+    onAddTask(newToDo);
     setToDo('');
   }
 
@@ -39,14 +26,34 @@ export default function ContainerForm({ onAddTask, onFilterChange }) {
   };
 
   return (
-    <div>
-      <input type='text' value={toDo} onChange={handleChange} placeholder='Ingresar nueva tarea' />
-      <select value={filter} onChange={handleFilterChange}>
-        <option value="all">Todas</option>
-        <option value="complete">Completas</option>
-        <option value="incomplete">Incompletas</option>
-      </select>
-      <button onClick={handleAddTask}>Agregar</button>
-    </div>
+    <Grid container spacing={2} alignItems='center' justifyContent={'center'} width={'70%'}>
+      <Grid item xs={6} >
+        <TextField id="filled-basic" variant="filled"
+        placeholder='"Agendar turno dermatóloga"'
+          type='text'
+          value={toDo}
+          onChange={handleChange}
+          helperText='Ingrese nueva tarea'
+          fullWidth
+        />
+
+      </Grid>
+      <Grid item xs={6} >
+        <TextField
+          value={filter}
+          onChange={handleFilterChange}
+          helperText='Ingrese un filtro'
+          fullWidth
+          select
+          variant='filled'>
+          <MenuItem value="all">Todas</MenuItem>
+          <MenuItem value="complete">Completas</MenuItem>
+          <MenuItem value="incomplete">Incompletas</MenuItem>
+        </TextField>
+      </Grid>
+      <Grid item>
+        <Button variant="contained" sx={{ bgcolor:'#FFFF99', color:'black'}} onClick={handleAddTask}>Agregar</Button>
+      </Grid>
+    </Grid>
   );
 }

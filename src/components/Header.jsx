@@ -1,7 +1,10 @@
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
 export default function Header() {
     return (
-        <div>
-           <h1>Todo List</h1>
-        </div>
+        <Box>
+           <Typography variant="h2" gutterBottom style={{ color:'black', fontWeight:'bold', textShadow: '#FFFF99' }}>Todo List</Typography>
+        </Box>
     )
 }

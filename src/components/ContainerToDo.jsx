@@ -1,4 +1,7 @@
 import React from "react";
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 export default function ContainerToDo({ allToDo, onDeleteToDo, onCompleteToDo, filter }) {
     const handleDeleteClick = (idToDo) => {
@@ -9,7 +12,6 @@ export default function ContainerToDo({ allToDo, onDeleteToDo, onCompleteToDo, f
         onCompleteToDo(idToDo);
     };
 
-    //acá necesito una funcion para filtrar las tareas según las option
     const filterToDo = () => {
         switch (filter) {
             case 'complete':
@@ -23,11 +25,11 @@ export default function ContainerToDo({ allToDo, onDeleteToDo, onCompleteToDo, f
 
     return (
         <ul>
-            {filterToDo().map((toDo) => (//aplico estilo en linea solo para probar que funcione
+            {filterToDo().map((toDo) => (
                 <li key={toDo.id} style={{ textDecoration: toDo.completed ? 'line-through' : 'none'}}>
                     {toDo.toDo}
-                    <button key={`completeBtn-${toDo.id}`} onClick={() => handleCompleteClick(toDo.id)}>Completar</button>
-                    <button key={`deleteBtn-${toDo.id}`} onClick={() => handleDeleteClick(toDo.id)}>Eliminar</button>
+                    <Button variant="outlined" size="small" key={`completeBtn-${toDo.id}`} sx={{ bgcolor:'#FFFF99', color:'black', border:'none', margin:'10px'}} onClick={() => handleCompleteClick(toDo.id)}><DoneAllIcon /></Button>
+                    <Button variant="outlined" size="small" key={`deleteBtn-${toDo.id}`} sx={{ bgcolor:'#FFFF99', color:'black', border:'none', margin:'10px'}} onClick={() => handleDeleteClick(toDo.id)}><DeleteIcon /></Button>
                 </li>
             ))}
         </ul>
