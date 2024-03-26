@@ -1,18 +1,17 @@
-import { VerticalAlignBottom } from '@mui/icons-material';
+
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-export default function Footer () {
+export default function Footer() {
     return (
         <footer style={{
             backgroundColor: 'black',
             color: '#ffff99',
             padding: '20px',
-            position: 'fixed',
-            bottom: '0px',
+            marginTop: 'auto',
             width: '100vw',
             textAlign: 'center',
         }}>
-           <p >HECHO POR LUNA AGUSTINA BATH <FavoriteBorderIcon style={{verticalAlign: 'middle'}} /></p>
+            <p >Hecho por Luna Agustina Bath <FavoriteBorderIcon sx={{ verticalAlign: 'middle' }} /></p>
         </footer>
     );
 }

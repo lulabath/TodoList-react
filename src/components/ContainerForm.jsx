@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Grid, TextField, MenuItem, Button } from '@mui/material';
+import { Grid, TextField, MenuItem, Button, makeStyles } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function ContainerForm({ onAddTask, onFilterChange }) {
   const [toDo, setToDo] = useState('');
@@ -7,7 +8,7 @@ export default function ContainerForm({ onAddTask, onFilterChange }) {
 
   const handleChange = (event) => {
     const toDoText = event.target.value;
-    if (toDoText.length <= 40) {
+    if (toDoText &&  toDoText.length <= 40) {
       setToDo(toDoText);
     }
   };
@@ -19,6 +20,12 @@ export default function ContainerForm({ onAddTask, onFilterChange }) {
     setToDo('');
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleAddTask();
+    }
+  }
+
   const handleFilterChange = (event) => {
     const selectedFilter = event.target.value;
     setFilter(selectedFilter);
@@ -26,15 +33,30 @@ export default function ContainerForm({ onAddTask, onFilterChange }) {
   };
 
   return (
-    <Grid container spacing={2} alignItems='center' justifyContent={'center'} width={'70%'}>
-      <Grid item xs={6} >
-        <TextField id="filled-basic" variant="filled"
-        placeholder='"Agendar turno dermatóloga"'
+    <Grid
+      container spacing={2}
+      alignItems='center'
+      justifyContent={'center'}
+      width={'60%'}
+      fontSize={'1.2rem'}>
+      <Grid item xs={6}
+        style={{
+          textAlign: "center",
+          alignItems: "center",
+          justifyContent: "center"
+        }} >
+        <TextField
+          id="filled-basic"
+          variant="filled"
+          placeholder='Ej: Agendar turno dermatóloga'
           type='text'
           value={toDo}
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
           helperText='Ingrese nueva tarea'
           fullWidth
+          InputProps={{ sx: { fontSize: '1.2rem' } }}
+          FormHelperTextProps={{ sx: { fontSize: '1rem' } }}
         />
 
       </Grid>
@@ -42,17 +64,18 @@ export default function ContainerForm({ onAddTask, onFilterChange }) {
         <TextField
           value={filter}
           onChange={handleFilterChange}
-          helperText='Ingrese un filtro'
           fullWidth
           select
-          variant='filled'>
-          <MenuItem value="all">Todas</MenuItem>
-          <MenuItem value="complete">Completas</MenuItem>
-          <MenuItem value="incomplete">Incompletas</MenuItem>
+          variant='filled'
+          helperText='Ingrese un filtro'
+          FormHelperTextProps={{ sx: { fontSize: '1rem' } }}>
+          <MenuItem value="all" xs={{ fontSize: '1rem' }}>Todas</MenuItem>
+          <MenuItem value="complete" xs={{ fontSize: '1rem' }}>Completas</MenuItem>
+          <MenuItem value="incomplete" xs={{ fontSize: '1rem' }}>Incompletas</MenuItem>
         </TextField>
       </Grid>
       <Grid item>
-        <Button variant="contained" sx={{ bgcolor:'#FFFF99', color:'black'}} onClick={handleAddTask}>Agregar</Button>
+        <Button variant="contained" sx={{ bgcolor: 'black', color: '#FFFF99' }} onClick={handleAddTask}> <SendIcon /> </Button>
       </Grid>
     </Grid>
   );

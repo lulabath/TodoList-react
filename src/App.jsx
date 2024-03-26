@@ -3,8 +3,8 @@ import ContainerForm from "./components/ContainerForm"
 import ContainerToDo from "./components/ContainerToDo"
 import Footer from "./components/Footer"
 import { Typography, Box } from '@mui/material'
-
 import { useState, useEffect } from "react";
+
 
 function App() {
   const [allToDo, setAllToDo] = useState([]);
@@ -47,7 +47,7 @@ function App() {
         filterToDo = allToDo.filter(toDo => !toDo.completed);
         break;
       default:
-        filterToDo = allToDo;npm 
+        filterToDo = allToDo;
         break;
     }
     setFilterToDo(filterToDo);
@@ -60,15 +60,17 @@ function App() {
       textAlign="center"
       alignItems="center"
       justifyContent="center"
-      style={{
+      sx={{
         backgroundImage: 'linear-gradient(120deg, #FFCC99, #CCFFCC)',
         minHeight: '100vh',
-        marginTop: '0px'
+        margin: '0px'
       }}
     >
       <Header />
       <ContainerForm onAddTask={handleAddTask} onFilterChange={handleFilterChange} />
-      <Typography variant="h6" gutterBottom><ContainerToDo allToDo={filterToDo} onDeleteToDo={handleDeleteToDo} onCompleteToDo={handleCompleteToDo} /></Typography>
+      <Typography variant="h6" gutterBottom style={{ width: '70%' }}>
+        <ContainerToDo allToDo={filterToDo} onDeleteToDo={handleDeleteToDo} onCompleteToDo={handleCompleteToDo} />
+      </Typography>
       <Footer />
     </Box>
   )

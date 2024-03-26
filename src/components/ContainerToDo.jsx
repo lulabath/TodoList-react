@@ -23,13 +23,51 @@ export default function ContainerToDo({ allToDo, onDeleteToDo, onCompleteToDo, f
         }
     };
 
+    const capFirstLetter = (string) => {
+        if(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        } else {
+            return '';
+        }
+        
+    };
+
     return (
-        <ul>
+        <ul style={{ margin: '30px', padding: '0'}}>
             {filterToDo().map((toDo) => (
-                <li key={toDo.id} style={{ textDecoration: toDo.completed ? 'line-through' : 'none'}}>
-                    {toDo.toDo}
-                    <Button variant="outlined" size="small" key={`completeBtn-${toDo.id}`} sx={{ bgcolor:'#FFFF99', color:'black', border:'none', margin:'10px'}} onClick={() => handleCompleteClick(toDo.id)}><DoneAllIcon /></Button>
-                    <Button variant="outlined" size="small" key={`deleteBtn-${toDo.id}`} sx={{ bgcolor:'#FFFF99', color:'black', border:'none', margin:'10px'}} onClick={() => handleDeleteClick(toDo.id)}><DeleteIcon /></Button>
+                <li key={toDo.id} style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: '3px',
+                    marginTop: '10px',
+                    border: ' 1px black solid',
+                    width: '100%'
+                }}>
+                    <span style={{ textDecoration: toDo.completed ? 'line-through' : 'none' }}>
+                        {capFirstLetter(toDo.toDo)}
+                    </span>
+                    <div>
+                        <Button 
+                        variant="outlined" 
+                        size="small" 
+                        key={`completeBtn-${toDo.id}`} 
+                        sx={{
+                            bgcolor: '#FFFF99',
+                            color: 'black',
+                            border: 'none',
+                            margin: '10px'
+                        }} 
+                        onClick={() => handleCompleteClick(toDo.id)}><DoneAllIcon /></Button>
+                        <Button 
+                        variant="outlined" 
+                        size="small" 
+                        key={`deleteBtn-${toDo.id}`} 
+                        sx={{ bgcolor: '#FFFF99', 
+                        color: 'black', 
+                        border: 'none', 
+                        margin: '10px' }} onClick={() => handleDeleteClick(toDo.id)}><DeleteIcon /></Button>
+                    </div>
                 </li>
             ))}
         </ul>
