@@ -20,7 +20,7 @@ function App() {
     const updatedToDoList = [...allToDo, { ...newToDo, completed: false }];
     setAllToDo([...updatedToDoList]);
     setFilterToDo(updatedToDoList);
-    localStorage.setItem('toDo', JSON.stringify([updatedToDoList]));
+    localStorage.setItem('toDo', JSON.stringify(updatedToDoList));
   };
 
   const handleDeleteToDo = (idToDo) => {
@@ -68,7 +68,7 @@ function App() {
     >
       <Header />
       <ContainerForm onAddTask={handleAddTask} onFilterChange={handleFilterChange} />
-      <Typography variant="h6" gutterBottom style={{ width: '70%' }}>
+      <Typography variant="h7" gutterBottom style={{ width: '70%' }}>
         <ContainerToDo allToDo={filterToDo} onDeleteToDo={handleDeleteToDo} onCompleteToDo={handleCompleteToDo} />
       </Typography>
       <Footer />

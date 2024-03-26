@@ -8,7 +8,7 @@ export default function ContainerForm({ onAddTask, onFilterChange }) {
 
   const handleChange = (event) => {
     const toDoText = event.target.value;
-    if (toDoText &&  toDoText.length <= 40) {
+    if (toDoText && toDoText.length <= 40) {
       setToDo(toDoText);
     }
   };
@@ -37,7 +37,7 @@ export default function ContainerForm({ onAddTask, onFilterChange }) {
       container spacing={2}
       alignItems='center'
       justifyContent={'center'}
-      width={'60%'}
+      width={'70%'}
       fontSize={'1.2rem'}>
       <Grid item xs={6}
         style={{
@@ -53,7 +53,7 @@ export default function ContainerForm({ onAddTask, onFilterChange }) {
           value={toDo}
           onChange={handleChange}
           onKeyPress={handleKeyPress}
-          helperText='Ingrese nueva tarea'
+          helperText='Ingrese tarea'
           fullWidth
           InputProps={{ sx: { fontSize: '1.2rem' } }}
           FormHelperTextProps={{ sx: { fontSize: '1rem' } }}

@@ -24,49 +24,50 @@ export default function ContainerToDo({ allToDo, onDeleteToDo, onCompleteToDo, f
     };
 
     const capFirstLetter = (string) => {
-        if(string) {
+        if (string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         } else {
             return '';
         }
-        
+
     };
 
     return (
-        <ul style={{ margin: '30px', padding: '0'}}>
+        <ul style={{ margin: '20px', padding: '0', width: '100%' }}>
             {filterToDo().map((toDo) => (
                 <li key={toDo.id} style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    padding: '3px',
+                    paddingLeft: '3px',
                     marginTop: '10px',
-                    border: ' 1px black solid',
-                    width: '100%'
+                    border: ' 1px black solid'
                 }}>
                     <span style={{ textDecoration: toDo.completed ? 'line-through' : 'none' }}>
                         {capFirstLetter(toDo.toDo)}
                     </span>
                     <div>
-                        <Button 
-                        variant="outlined" 
-                        size="small" 
-                        key={`completeBtn-${toDo.id}`} 
-                        sx={{
-                            bgcolor: '#FFFF99',
-                            color: 'black',
-                            border: 'none',
-                            margin: '10px'
-                        }} 
-                        onClick={() => handleCompleteClick(toDo.id)}><DoneAllIcon /></Button>
-                        <Button 
-                        variant="outlined" 
-                        size="small" 
-                        key={`deleteBtn-${toDo.id}`} 
-                        sx={{ bgcolor: '#FFFF99', 
-                        color: 'black', 
-                        border: 'none', 
-                        margin: '10px' }} onClick={() => handleDeleteClick(toDo.id)}><DeleteIcon /></Button>
+                        <Button
+                            variant="outlined"
+                            size="small"
+                            key={`completeBtn-${toDo.id}`}
+                            sx={{
+                                bgcolor: '#FFFF99',
+                                color: 'black',
+                                border: 'none',
+                                margin: '10px'
+                            }}
+                            onClick={() => handleCompleteClick(toDo.id)}><DoneAllIcon /></Button>
+                        <Button
+                            variant="outlined"
+                            size="small"
+                            key={`deleteBtn-${toDo.id}`}
+                            sx={{
+                                bgcolor: '#FFFF99',
+                                color: 'black',
+                                border: 'none',
+                                margin: '10px'
+                            }} onClick={() => handleDeleteClick(toDo.id)}><DeleteIcon /></Button>
                     </div>
                 </li>
             ))}
