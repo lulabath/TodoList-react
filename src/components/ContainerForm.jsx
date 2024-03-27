@@ -55,7 +55,7 @@ export default function ContainerForm({ onAddTask, onFilterChange }) {
           onKeyPress={handleKeyPress}
           helperText='Ingrese tarea'
           fullWidth
-          InputProps={{ sx: { fontSize: '1.2rem' } }}
+          InputProps={{ sx: { fontSize: '1rem' } }}
           FormHelperTextProps={{ sx: { fontSize: '1rem' } }}
         />
 
