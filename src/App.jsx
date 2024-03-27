@@ -21,6 +21,7 @@ function App() {
     setAllToDo([...updatedToDoList]);
     setFilterToDo(updatedToDoList);
     localStorage.setItem('toDo', JSON.stringify(updatedToDoList));
+    console.log(updatedToDoList);
   };
 
   const handleDeleteToDo = (idToDo) => {
