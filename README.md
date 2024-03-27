@@ -4,6 +4,8 @@
 
 📍 Link al proyecto: https://todo-list-react-zeta-ochre.vercel.app/
 
+![viewpage](./TodoList.png)
+
 ## 📝 Consigna
 La idea de este proyecto es crear una aplicación de React que permita hacer una lista de tareas, marcar las tareas completadas ✔️ y poder eliminar 🗑 aquellas que ya no quieras o necesites, además de manipular localStorage.
 
